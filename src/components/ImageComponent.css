@@ -1,0 +1,12 @@
+.image_file {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+/* .image_file:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.image_file.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+} */

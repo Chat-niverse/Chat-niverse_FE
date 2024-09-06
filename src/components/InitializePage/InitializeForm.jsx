@@ -194,7 +194,7 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
           <button
             onClick={(e) => {
               e.preventDefault();
-              c();
+              handleSubmit();
             }}
             className="button"
           >

@@ -1,33 +1,68 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import MainPage from "./components/MainPage/MainPage";
+import InitializePage from "./components/InitializePage/InitializePage";
+import FirstPage from "./components/FirstPage/FirstPage";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState("firstPage");
+  const [submittedData, setSubmittedData] = useState(null);
+  const [selectedChoice, setSelectedChoice] = useState(null);
+  const choices = ["Choice 1", "Choice 2", "Choice 3", "Choice 4"];
+
+  const handleChoiceSelect = (index) => {
+    setSelectedChoice(index);
+  };
+
+  const handleEnter = () => {
+    setCurrentPage("initializePage");
+  };
+
+  const handleFormSubmit = (formData) => {
+    // Set the form data when it is confirmed
+    setSubmittedData(formData);
+    setCurrentPage("finalPage");
+  };
+
+  // Effect to trigger the Axios POST request when formData is submitted
+  useEffect(() => {
+    if (submittedData) {
+      const submitFormData = async () => {
+        try {
+          const response = await axios.post(
+            "https://your-api-endpoint.com/submit",
+            submittedData
+          );
+          console.log("Form submitted successfully:", response.data);
+        } catch (error) {
+          console.error("Error submitting form:", error);
+        }
+      };
+
+      submitFormData();
+    }
+  }, [submittedData]);
+
+  //submittedData.life = 3;
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="App">
+        {currentPage === "firstPage" && <FirstPage onEnter={handleEnter} />}
+        {currentPage === "initializePage" && (
+          <InitializePage onFormSubmit={handleFormSubmit} />
+        )}
+        {currentPage === "finalPage" && (
+          <MainPage
+            choices={choices}
+            handleChoiceSelect={handleChoiceSelect}
+            selectedChoice={selectedChoice}
+            healthpoint={submittedData.life}
+            inventory={submittedData.inventory}
+          />
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }

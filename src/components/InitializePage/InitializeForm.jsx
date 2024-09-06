@@ -3,8 +3,8 @@ import axios from "axios";
 import "./InitializeForm.css";
 import { TypeAnimation } from "react-type-animation";
 
-const InitializeForm = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
+const InitializeForm = ({ setCurrentPage, setFormData }) => {
+  const [formData, updateFormData] = useState({
     isStart: 1, // 0이면 진행중, 1이면 시작
     username: "",
     worldview: "",
@@ -27,12 +27,11 @@ const InitializeForm = ({ onSubmit }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    updateFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
-
   const handleNextStep = (e) => {
     e.preventDefault();
     setStep((prevStep) => prevStep + 1); // Go to the next step
@@ -53,9 +52,8 @@ const InitializeForm = ({ onSubmit }) => {
 
       console.log("Response received:", response.data);
 
-      if (onSubmit) {
-        onSubmit(formData); // Pass the form data to the parent
-      }
+      setFormData(formData);
+      setCurrentPage("mainpage");
     } catch (error) {
       console.error("Error sending data:", error);
       // Handle error (you can show an error message to the user)

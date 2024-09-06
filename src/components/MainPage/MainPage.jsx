@@ -6,21 +6,18 @@ import ChoicesBox from "./ChoicesBox";
 import Header from "../Header/Header";
 import UIs from "./UIs";
 
-const MainPage = ({
-  choices,
-  handleChoiceSelect,
-  selectedChoice,
-  healthpoint,
-  inventory,
-}) => {
+const MainPage = ({ formData, handleChoiceSelect, selectedChoice }) => {
   return (
     <div className="MainPage">
       <Header />
       <div className="mainpage_content">
         <ImageComponent />
-        <UIs healthpoint={healthpoint} inventory={inventory} />
+        <UIs healthpoint={formData.life} inventory={formData.inventory} />
         <DescriptionText />
-        <ChoicesBox choices={choices} onChoiceSelect={handleChoiceSelect} />
+        <ChoicesBox
+          choices={formData.choices}
+          onChoiceSelect={handleChoiceSelect}
+        />
         {selectedChoice !== null && (
           <p>Selected choice is {selectedChoice + 1}</p>
         )}

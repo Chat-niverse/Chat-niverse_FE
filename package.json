@@ -16,6 +16,7 @@
     "react-dom": "^18.3.1",
     "react-pageflip": "^2.0.3",
     "react-responsive": "^10.0.0",
+    "react-router-dom": "^6.26.1",
     "react-type-animation": "^3.2.0"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./InitializeForm.css";
 import { TypeAnimation } from "react-type-animation";
 
@@ -9,17 +10,17 @@ const InitializeForm = ({ onSubmit }) => {
     worldview: "",
     charsetting: "",
     aim: "",
-    choices: [],
-    selectedchoice: null,
-    status: [],
-    life: 3,
-    inventory: [
-      ["knife", 1],
-      ["stone", 2],
-    ],
-    isfull: false,
-    playlog: null,
-    gptsays: null,
+    // choices: [],
+    // selectedchoice: null,
+    // status: [],
+    // life: 3,
+    // inventory: [
+    //   ["knife", 1],
+    //   ["stone", 2],
+    // ],
+    // isfull: false,
+    // playlog: null,
+    // gptsays: null,
   });
 
   const [step, setStep] = useState(1); // Step state to track current form step
@@ -37,31 +38,50 @@ const InitializeForm = ({ onSubmit }) => {
     setStep((prevStep) => prevStep + 1); // Go to the next step
   };
 
-  const handleSubmit = () => {
-    if (onSubmit) {
-      onSubmit(formData); // Pass the form data to the parent
+  const handleSubmit = async () => {
+    try {
+      // Send POST request with the form data
+      const response = await axios.post(
+        "http://43.200.1.120/api/start",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Response received:", response.data);
+
+      if (onSubmit) {
+        onSubmit(formData); // Pass the form data to the parent
+      }
+    } catch (error) {
+      console.error("Error sending data:", error);
+      // Handle error (you can show an error message to the user)
     }
   };
 
   const handleReset = () => {
     setStep(1);
     setFormData({
+      isStart: 1,
       username: "",
       worldview: "",
       charsetting: "",
       aim: "",
-      choices: [],
-      selectedchoice: null,
-      status: [],
-      life: 3,
-      inventory: [
-        ["knife", 1],
-        ["stone", 2],
-      ],
-      isfull: false,
-      playlog: null,
-      gptsays: null,
-      isStart: null, // 0이면 진행중, 1이면 시작
+      //   choices: [],
+      //   selectedchoice: null,
+      //   status: [],
+      //   life: 3,
+      //   inventory: [
+      //     ["knife", 1],
+      //     ["stone", 2],
+      //   ],
+      //   isfull: false,
+      //   playlog: null,
+      //   gptsays: null,
+      // 0이면 진행중, 1이면 시작
     });
   };
 

@@ -50,7 +50,6 @@ function App() {
           console.error("Error submitting form:", error);
         }
       };
-
       submitFormData();
     }
   }, [submittedData]);

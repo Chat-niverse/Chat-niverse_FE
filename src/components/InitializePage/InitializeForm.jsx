@@ -7,11 +7,13 @@ const InitializeForm = ({ onSubmit }) => {
     worldview: "",
     charsetting: "",
     aim: "",
+    choices: {},
+    selectedchoice: null,
     status: {},
     life: null,
     inventory: {},
+    isfull: false,
     playlog: null,
-    gameending: null,
     gptsays: null,
   });
 

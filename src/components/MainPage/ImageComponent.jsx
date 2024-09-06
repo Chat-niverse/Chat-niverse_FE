@@ -1,5 +1,5 @@
 import "./ImageComponent.css";
-import DefaultImage from "../assets/Images/DefaultImage.svg";
+import DefaultImage from "../../assets/Images/DefaultImage.svg";
 
 function ImageComponent() {
   return (

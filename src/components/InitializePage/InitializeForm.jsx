@@ -7,14 +7,18 @@ const InitializeForm = ({ onSubmit }) => {
     worldview: "",
     charsetting: "",
     aim: "",
-    choices: {},
+    choices: [],
     selectedchoice: null,
-    status: {},
-    life: null,
-    inventory: {},
+    status: [],
+    life: 3,
+    inventory: [
+      ["knife", 1],
+      ["stone", 2],
+    ],
     isfull: false,
     playlog: null,
     gptsays: null,
+    isStart: null, // 0이면 진행중, 1이면 시작
   });
 
   const [showConfirmation, setShowConfirmation] = useState(false);

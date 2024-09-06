@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import "./InitializePage.css";
 import InitializeForm from "./InitializeForm";
-import Logo from "../../assets/Images/chatniverselogo.png";
+import Header from "../Header/Header";
 
 const InitializePage = ({ onFormSubmit }) => {
   return (
     <div className="InitializePage">
-      <div className="firstpage_image_container">
-        <img src={Logo} className="firstpage_image_file" />
-        <span className="project_name">Chat-Niverse</span>
+      <Header />
+      <div className="InitializePage_content">
+        <div className="InitializePage_Text">
+          당신이 꿈꾸는 이야기를 들려주세요.
+        </div>
+        <InitializeForm onSubmit={onFormSubmit}></InitializeForm>
       </div>
-      <div className="InitializePage_Text">
-        당신이 꿈꾸는 이야기를 들려주세요.
-      </div>
-      <InitializeForm onSubmit={onFormSubmit}></InitializeForm>
     </div>
   );
 };

@@ -17,7 +17,7 @@ const MainPage = ({
       <Header />
       <div className="mainpage_content">
         <ImageComponent imageurl={formData.imageurl} />
-        <UIs formData={formData} />
+        {/* <UIs formData={formData} /> */}
         <DescriptionText playlog={formData.playlog} />
         <ChoicesBox
           choices={formData.choices}

@@ -41,7 +41,7 @@ function App() {
             },
             {
               headers: {
-                "Content-Type": "application / json", // Specify the content-type as JSON
+                "Content-Type": "application/json", // Specify the content-type as JSON
               },
             }
           );

@@ -50,7 +50,28 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
 
       console.log("Response received:", response.data);
 
-      updateFormData(formData);
+      formData.isStart = response.data.result.isStart;
+      formData.username = response.data.result.username;
+      formData.worldview = response.data.result.worldview;
+      formData.charsetting = response.data.result.charsetting;
+      formData.aim = response.data.result.aim;
+      formData.status.luck = response.data.result.status.luck;
+      formData.status.strength = response.data.result.status.strength;
+      formData.status.endurance = response.data.result.status.endurance;
+      formData.status.charisma = response.data.result.status.charisma;
+      formData.status.intelligence = response.data.result.status.intelligence;
+      formData.status.perception = response.data.result.status.perception;
+      formData.life = response.data.result.life;
+      formData.inventory = response.data.result.inventory;
+      formData.isfull = response.data.result.isfull;
+      formData.playlog = response.data.result.playlog;
+      formData.gptsays = response.data.result.gptsays;
+      formData.selectedchoice = response.data.result.selectedchoice;
+      formData.choices.first = response.data.result.choices.first;
+      formData.choices.second = response.data.result.choices.second;
+      formData.choices.third = response.data.result.choices.third;
+      formData.imageurl = response.data.result.imageurl;
+
       setCurrentPage("mainpage");
     } catch (error) {
       console.error("Error sending data:", error);

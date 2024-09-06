@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./InitializeForm.css";
 
 const InitializeForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     username: "",
-    worldsetting: "",
+    worldview: "",
     charsetting: "",
     aim: "",
+    status: {},
+    life: null,
+    inventory: {},
+    playlog: null,
+    gameending: null,
+    gptsays: null,
   });
 
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -50,8 +55,8 @@ const InitializeForm = ({ onSubmit }) => {
         당신의 세계관은 어떤가요?
         <input
           type="text"
-          name="worldsetting"
-          value={formData.worldsetting}
+          name="worldview"
+          value={formData.worldview}
           onChange={handleChange}
           placeholder="제가 살고 있는 세계는..."
         />
@@ -81,7 +86,7 @@ const InitializeForm = ({ onSubmit }) => {
           <p>이 이야기가 당신의 이야기가 맞나요?</p>
           <div>
             <p>이름: {formData.username}</p>
-            <p>세계관: {formData.worldsetting}</p>
+            <p>세계관: {formData.worldview}</p>
             <p>성격: {formData.charsetting}</p>
             <p>목표: {formData.aim}</p>
           </div>

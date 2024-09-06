@@ -25,36 +25,36 @@ function App() {
     setCurrentPage("finalPage");
   };
   // Effect to trigger the Axios POST request when formData is submitted
-  useEffect(() => {
-    if (submittedData) {
-      const submitFormData = async () => {
-        try {
-          const response = await axios.post(
-            "http://43.200.1.120/api/start",
-            {
-              isStart: submittedData.isStart,
-              username: submittedData.username,
-              worldview: submittedData.worldview,
-              charsetting: submittedData.charsetting,
-              aim: submittedData.aim,
-            },
-            {
-              headers: {
-                "Content-Type": "application/json", // Specify the content-type as JSON
-              },
-            }
-          );
-          console.log("Form submitted successfully:", response.data);
-          return response.data;
-        } catch (error) {
-          console.error("Error submitting form:", error);
-        }
-      };
-      submitFormData();
-    }
-  }, [submittedData]);
+  // useEffect(() => {
+  //   if (submittedData) {
+  //     const submitFormData = async () => {
+  //       try {
+  //         const response = await axios.post(
+  //           "http://43.200.1.120/api/start",
+  //           {
+  //             isStart: submittedData.isStart,
+  //             username: submittedData.username,
+  //             worldview: submittedData.worldview,
+  //             charsetting: submittedData.charsetting,
+  //             aim: submittedData.aim,
+  //           },
+  //           {
+  //             headers: {
+  //               "Content-Type": "application/json", // Specify the content-type as JSON
+  //             },
+  //           }
+  //         );
+  //         console.log("Form submitted successfully:", response.data);
+  //         return response.data;
+  //       } catch (error) {
+  //         console.error("Error submitting form:", error);
+  //       }
+  //     };
+  //     submitFormData();
+  //   }
+  // }, [submittedData]);
 
-  //submittedData.life = 3;
+  // //submittedData.life = 3;
 
   return (
     <>

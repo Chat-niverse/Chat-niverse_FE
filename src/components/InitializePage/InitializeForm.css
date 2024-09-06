@@ -22,7 +22,8 @@ input {
   width: 100%;
   max-width: 300px;
   color: white;
-  border-color: white;
+  justify-content: center;
+  align-items: center;
   border-radius: 4px;
   cursor: pointer;
   will-change: filter;

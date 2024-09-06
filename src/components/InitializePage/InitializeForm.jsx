@@ -20,6 +20,37 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
     imageurl: null,
   });
 
+  const mapResponseToFormData = (response) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      isStart: response.data.result.isStart || 0,
+      username: response.data.result.username || "",
+      worldview: response.data.result.worldview || "세계관이 없습니다.",
+      charsetting: response.data.result.charsetting || "성격 설정이 없습니다.",
+      aim: response.data.result.aim || "목표가 설정되지 않았습니다.",
+      status: {
+        luck: response.data.result.status?.luck || "0",
+        strength: response.data.result.status?.strength || "0",
+        endurance: response.data.result.status?.endurance || "0",
+        charisma: response.data.result.status?.charisma || "0",
+        intelligence: response.data.result.status?.intelligence || "0",
+        perception: response.data.result.status?.perception || "0",
+      },
+      life: response.data.result.life || "0",
+      inventory: response.data.result.inventory || {}, // 빈 객체일 경우 처리
+      isfull: response.data.result.isfull || false,
+      playlog: response.data.result.playlog || "플레이 로그가 없습니다.",
+      gptsays: response.data.result.gptsays || "",
+      selectedchoice: response.data.result.selectedchoice || "",
+      choices: {
+        first: response.data.result.choices?.first || "",
+        second: response.data.result.choices?.second || "",
+        third: response.data.result.choices?.third || "",
+      },
+      imageurl: response.data.result.imageurl || "",
+    }));
+  };
+
   const [step, setStep] = useState(1); // Step state to track current form step
 
   const handleChange = (e) => {
@@ -48,24 +79,7 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
       );
 
       console.log("Response received:", response.data);
-
-      formData.isStart = response.data.result.isStart || 0;
-      formData.username = response.data.result.username || "";
-      formData.worldview = response.data.result.worldview || "";
-      formData.charsetting = response.data.result.charsetting || "";
-      formData.aim = response.data.result.aim || "";
-      formData.life = response.data.result.life || 0;
-      formData.inventory = response.data.result.inventory || {}; // 빈 객체일 경우 처리
-      formData.isfull = response.data.result.isfull || false;
-      formData.playlog = response.data.result.playlog || "";
-      formData.gptsays = response.data.result.gptsays || "";
-      formData.selectedchoice = response.data.result.selectedchoice || "";
-      formData.choices = {
-        first: response.data.result.choices?.first || "",
-        second: response.data.result.choices?.second || "",
-        third: response.data.result.choices?.third || "",
-      };
-      formData.imageurl = response.data.result.imageurl || "";
+      mapResponseToFormData(response);
       setCurrentPage("mainpage");
     } catch (error) {
       console.error("Error sending data:", error);

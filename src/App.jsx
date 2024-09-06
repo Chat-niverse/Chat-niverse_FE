@@ -34,14 +34,14 @@ function App() {
             "http://43.200.1.120/api/start",
             {
               isStart: submittedData.isStart,
-              username: submittedData.inventory,
+              username: submittedData.username,
               worldview: submittedData.worldview,
               charsetting: submittedData.charsetting,
               aim: submittedData.aim,
             },
             {
               headers: {
-                "Content-Type": "application/json", // Specify the content-type as JSON
+                "Content-Type": "application / json", // Specify the content-type as JSON
               },
             }
           );

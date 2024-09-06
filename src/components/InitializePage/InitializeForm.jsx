@@ -4,6 +4,7 @@ import { TypeAnimation } from "react-type-animation";
 
 const InitializeForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
+    isStart: 1, // 0이면 진행중, 1이면 시작
     username: "",
     worldview: "",
     charsetting: "",
@@ -19,7 +20,6 @@ const InitializeForm = ({ onSubmit }) => {
     isfull: false,
     playlog: null,
     gptsays: null,
-    isStart: null, // 0이면 진행중, 1이면 시작
   });
 
   const [step, setStep] = useState(1); // Step state to track current form step

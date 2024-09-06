@@ -30,10 +30,13 @@ function App() {
     if (submittedData) {
       const submitFormData = async () => {
         try {
-          const response = await axios.post(
-            "https://your-api-endpoint.com/submit",
-            submittedData
-          );
+          const response = await axios.post("http://43.200.1.120/api/start", {
+            isStart: submittedData.isStart,
+            username: submittedData.inventory,
+            worldview: submittedData.worldview,
+            charsetting: submittedData.charsetting,
+            aim: submittedData.aim,
+          });
           console.log("Form submitted successfully:", response.data);
         } catch (error) {
           console.error("Error submitting form:", error);

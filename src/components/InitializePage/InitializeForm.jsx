@@ -191,7 +191,13 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
             repeat={1}
             cursor={false}
           />
-          <button onClick={handleSubmit} className="button">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              c();
+            }}
+            className="button"
+          >
             네
           </button>
           <button onClick={handleReset} className="button cancel">

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainPage from "./components/MainPage/MainPage";
 import InitializePage from "./components/InitializePage/InitializePage";
 import FirstPage from "./components/FirstPage/FirstPage";

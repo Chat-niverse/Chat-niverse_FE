@@ -53,7 +53,13 @@ const FirstPage = ({ onEnter }) => {
         repeat={Infinity}
       />
       <div className="lower_text">여러분들의 이야기를 들려주세요</div>
-      <button className="enter_button" onClick={onEnter}>
+      <button
+        className="enter_button"
+        onClick={(e) => {
+          e.preventDefault();
+          onEnter();
+        }}
+      >
         첫 장을 편다.
       </button>
     </div>

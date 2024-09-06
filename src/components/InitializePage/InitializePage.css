@@ -2,3 +2,7 @@
   font-size: xx-large;
   margin-bottom: 100px;
 }
+
+.InitializePage_content {
+  padding-top: 80px; /* Add padding equal to or greater than the header height */
+}

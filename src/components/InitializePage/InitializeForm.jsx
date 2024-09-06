@@ -52,7 +52,7 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
 
       console.log("Response received:", response.data);
 
-      setFormData(formData);
+      updateFormData(formData);
       setCurrentPage("mainpage");
     } catch (error) {
       console.error("Error sending data:", error);

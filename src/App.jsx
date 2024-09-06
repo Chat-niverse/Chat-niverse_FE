@@ -24,7 +24,6 @@ function App() {
     setSubmittedData(formData);
     setCurrentPage("finalPage");
   };
-
   // Effect to trigger the Axios POST request when formData is submitted
   useEffect(() => {
     if (submittedData) {
@@ -46,6 +45,7 @@ function App() {
             }
           );
           console.log("Form submitted successfully:", response.data);
+          return response.data;
         } catch (error) {
           console.error("Error submitting form:", error);
         }

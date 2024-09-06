@@ -19,17 +19,17 @@ input {
   padding: 0.5rem;
   width: 100%;
   max-width: 300px;
-  background-color: #4caf50;
   color: white;
-  border: none;
+  border-color: white;
   border-radius: 4px;
   cursor: pointer;
   will-change: filter;
-  transition: filter 300ms;
+  transition: filter 300ms, border-color 300ms;
 }
 
 .button:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
+  border-color: #646cffaa;
 }
 
 .button.react:hover {

@@ -9,9 +9,10 @@
   padding: 1rem;
   border: white solid 1px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 300ms, filter 300ms;
 }
 
 .choice-box:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #646cffaa;
+  filter: drop-shadow(0 0 2em #646cffaa);
 }

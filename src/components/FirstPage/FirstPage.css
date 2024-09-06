@@ -1,0 +1,52 @@
+.firstpage_image_file {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 50px; /* Adjust size as needed */
+  height: auto;
+  z-index: 1000; /* Ensures it stays on top of other content */
+}
+
+.upper_text {
+  position: relative; /* Keep it in the flow of the document */
+  top: -50px; /* Adjust this value to move it up as much as needed */
+  text-align: center; /* Center the text horizontally */
+  font-size: 1.5rem; /* Adjust text size as needed */
+  margin-bottom: 20px; /* Space it from other elements below */
+}
+
+.lower_text {
+  position: relative; /* Keep it in the flow of the document */
+  top: 75px; /* Adjust this value to move it up as much as needed */
+  text-align: center; /* Center the text horizontally */
+  font-size: 1.5rem; /* Adjust text size as needed */
+  margin-bottom: 20px; /* Space it from other elements below */
+}
+
+.project_name {
+  position: fixed;
+  top: 20px;
+  left: 75px;
+  font-size: 1.2rem; /* Adjust size as needed */
+  color: #fff; /* Set a color for the project name */
+  font-weight: bold; /* Make the text bold */
+}
+
+.enter_button {
+  position: relative;
+  top: 75px;
+  display: block;
+  margin: 100px auto;
+  padding: 10px 20px;
+  color: white;
+  border-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: border 300ms, filter 300ms;
+}
+
+.enter_button:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+  border: 1px solid #646cffaa;
+}

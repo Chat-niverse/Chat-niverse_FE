@@ -14,7 +14,7 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
     selectedchoice: null,
     status: null,
     life: 3,
-    inventory: nulld,
+    inventory: null,
     isfull: false,
     playlog: null,
     gptsays: null,

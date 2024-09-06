@@ -10,7 +10,7 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
     worldview: "",
     charsetting: "",
     aim: "",
-    choices: null,
+    choices: [],
     selectedchoice: null,
     status: null,
     life: 3,

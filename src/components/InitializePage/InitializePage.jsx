@@ -3,7 +3,7 @@ import "./InitializePage.css";
 import InitializeForm from "./InitializeForm";
 import Header from "../Header/Header";
 
-const InitializePage = ({ onFormSubmit, setCurrentPage }) => {
+const InitializePage = ({ setFormData, setCurrentPage }) => {
   return (
     <div className="InitializePage">
       <Header />
@@ -12,7 +12,7 @@ const InitializePage = ({ onFormSubmit, setCurrentPage }) => {
           당신이 꿈꾸는 이야기를 들려주세요.
         </div>
         <InitializeForm
-          onSubmit={onFormSubmit}
+          onSubmit={setFormData}
           setCurrentPage={setCurrentPage}
         ></InitializeForm>
       </div>

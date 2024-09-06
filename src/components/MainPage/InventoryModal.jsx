@@ -3,17 +3,19 @@ import "./InventoryModal.css";
 
 const InventoryModal = ({ inventory, closeModal }) => {
   return (
-    <div className="modal_overlay" onClick={closeModal}>
-      <div className="modal_content" onClick={(e) => e.stopPropagation()}>
-        <h4 className="Inventory_text">Inventory</h4>
+    <div className="inventory_modal">
+      <button onClick={closeModal} className="close_button">
+        닫기
+      </button>
+      {inventory.length === 0 ? (
+        <p>인벤토리에 아무것도 없습니다.</p> // Display message when inventory is empty
+      ) : (
         <ul>
-          {inventory.map(([item, count], index) => (
-            <li key={index} className="Li">
-              {item}: {count}
-            </li>
+          {inventory.map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
         </ul>
-      </div>
+      )}
     </div>
   );
 };

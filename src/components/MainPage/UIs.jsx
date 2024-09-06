@@ -4,7 +4,7 @@ import InventoryModal from "./InventoryModal";
 import BoxIcon from "../../assets/Icons/BoxIcon.svg";
 import HeartIcon from "../../assets/Icons/HeartIcon.svg";
 
-const UIs = ({ healthpoint, inventory }) => {
+const UIs = ({ formData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -15,7 +15,7 @@ const UIs = ({ healthpoint, inventory }) => {
     <div className="UI_contents">
       <img src={BoxIcon} className="box_icon" onClick={toggleModal} />
       <div className="heart_icons">
-        {Array(Math.floor(healthpoint))
+        {Array(Math.max(0, Math.floor(formData.life))) // healthpoint가 음수일 경우 0으로 처리
           .fill()
           .map((_, index) => (
             <img
@@ -27,7 +27,10 @@ const UIs = ({ healthpoint, inventory }) => {
           ))}
       </div>
       {isModalOpen && (
-        <InventoryModal inventory={inventory} closeModal={toggleModal} />
+        <InventoryModal
+          inventory={formData.inventory || []} // If inventory is null, pass an empty array
+          closeModal={toggleModal}
+        />
       )}
     </div>
   );

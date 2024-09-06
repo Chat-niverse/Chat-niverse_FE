@@ -5,9 +5,13 @@ const ChoicesBox = ({ choices, onChoiceSelect }) => {
     onChoiceSelect(index);
   };
 
+  const availableChoices = choices
+    ? [choices.first, choices.second, choices.third].filter(Boolean) // Filter out any undefined or null values
+    : [];
+
   return (
     <div className="choices-container">
-      {choices.map((choice, index) => (
+      {availableChoices.map((choice, index) => (
         <div
           key={index}
           className="choice-box"

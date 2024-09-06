@@ -1,11 +1,11 @@
 import "./DescriptionText.css";
 
-function DescriptionText() {
+const DescriptionText = ({ playlog }) => {
   return (
     <div className="Description_Textbox">
-      <div className="Text">Description Text</div>
+      <div className="Text">{playlog}</div>
     </div>
   );
-}
+};
 
 export default DescriptionText;

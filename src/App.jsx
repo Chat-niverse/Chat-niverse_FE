@@ -30,6 +30,7 @@ function App() {
         {currentPage === "mainpage" && (
           <MainPage
             formData={formData}
+            setFormData={setFormData}
             handleChoiceSelect={handleChoiceSelect}
             selectedChoice={selectedChoice}
           />

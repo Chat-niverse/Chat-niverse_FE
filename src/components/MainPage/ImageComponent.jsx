@@ -1,12 +1,12 @@
 import "./ImageComponent.css";
 import DefaultImage from "../../assets/Images/DefaultImage.svg";
 
-function ImageComponent() {
+const ImageComponent = ({ imageurl }) => {
   return (
     <div>
-      <img src={DefaultImage} className="image_file" />
+      <img src={imageurl} className="image_file" />
     </div>
   );
-}
+};
 
 export default ImageComponent;

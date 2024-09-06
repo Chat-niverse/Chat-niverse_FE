@@ -18,6 +18,7 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
     isfull: false,
     playlog: null,
     gptsays: null,
+    imageurl: null,
   });
 
   const [step, setStep] = useState(1); // Step state to track current form step

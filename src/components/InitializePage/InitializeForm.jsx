@@ -10,17 +10,17 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
     worldview: "",
     charsetting: "",
     aim: "",
-    // choices: [],
-    // selectedchoice: null,
-    // status: [],
-    // life: 3,
-    // inventory: [
-    //   ["knife", 1],
-    //   ["stone", 2],
-    // ],
-    // isfull: false,
-    // playlog: null,
-    // gptsays: null,
+    choices: [],
+    selectedchoice: null,
+    status: [],
+    life: 3,
+    inventory: [
+      ["knife", 1],
+      ["stone", 2],
+    ],
+    isfull: false,
+    playlog: null,
+    gptsays: null,
   });
 
   const [step, setStep] = useState(1); // Step state to track current form step

@@ -49,24 +49,24 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
 
       console.log("Response received:", response.data);
 
-      (formData.isStart = response.data.result.isStart || 0),
-        (formData.username = response.data.result.username || ""),
-        (formData.worldview = response.data.result.worldview || ""),
-        (formData.charsetting = response.data.result.charsetting || ""),
-        (formData.aim = response.data.result.aim || ""),
-        (formData.life = response.data.result.life || 0),
-        (formData.inventory = response.data.result.inventory || {}), // 빈 객체일 경우 처리
-        (formData.isfull = response.data.result.isfull || false),
-        (formData.playlog = response.data.result.playlog || ""),
-        (formData.gptsays = response.data.result.gptsays || ""),
-        (formData.selectedchoice = response.data.result.selectedchoice || ""),
-        (formData.choices = {
-          first: response.data.result.choices?.first || "",
-          second: response.data.result.choices?.second || "",
-          third: response.data.result.choices?.third || "",
-        }),
-        (formData.imageurl = response.data.result.imageurl || ""),
-        setCurrentPage("mainpage");
+      formData.isStart = response.data.result.isStart || 0;
+      formData.username = response.data.result.username || "";
+      formData.worldview = response.data.result.worldview || "";
+      formData.charsetting = response.data.result.charsetting || "";
+      formData.aim = response.data.result.aim || "";
+      formData.life = response.data.result.life || 0;
+      formData.inventory = response.data.result.inventory || {}; // 빈 객체일 경우 처리
+      formData.isfull = response.data.result.isfull || false;
+      formData.playlog = response.data.result.playlog || "";
+      formData.gptsays = response.data.result.gptsays || "";
+      formData.selectedchoice = response.data.result.selectedchoice || "";
+      formData.choices = {
+        first: response.data.result.choices?.first || "",
+        second: response.data.result.choices?.second || "",
+        third: response.data.result.choices?.third || "",
+      };
+      formData.imageurl = response.data.result.imageurl || "";
+      setCurrentPage("mainpage");
     } catch (error) {
       console.error("Error sending data:", error);
       // Handle error (you can show an error message to the user)

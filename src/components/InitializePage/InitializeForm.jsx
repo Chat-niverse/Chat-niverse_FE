@@ -15,7 +15,7 @@ const InitializeForm = ({ setCurrentPage, updateFormData }) => {
     life: 3,
     inventory: null,
     isfull: false,
-    playlog: null,c
+    playlog: null,
     gptsays: null,
     imageurl: null,
   });

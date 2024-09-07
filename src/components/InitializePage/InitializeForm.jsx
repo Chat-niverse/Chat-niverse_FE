@@ -47,7 +47,7 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
         }
       );
       // Update formData with response
-      set2FormData((prevFormData) => ({
+      updateFormData((prevFormData) => ({
         ...prevFormData,
         isStart: response.data.result.isStart || 0,
         username: response.data.result.username || "",

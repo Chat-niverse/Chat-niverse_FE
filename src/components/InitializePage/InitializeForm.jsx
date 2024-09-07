@@ -4,7 +4,7 @@ import "./InitializeForm.css";
 import { TypeAnimation } from "react-type-animation";
 
 const InitializeForm = ({ setCurrentPage, updateFormData }) => {
-  const [formData, setFormData] = useState({
+  const [formData, set2FormData] = useState({
     isStart: 1, // 0이면 진행중, 1이면 시작
     username: "",
     worldview: "",
@@ -47,7 +47,7 @@ const InitializeForm = ({ setCurrentPage, updateFormData }) => {
         }
       );
       // Update formData with response
-      setFormData((prevFormData) => ({
+      set2FormData((prevFormData) => ({
         ...prevFormData,
         isStart: response.data.result.isStart || 0,
         username: response.data.result.username || "",
@@ -85,7 +85,7 @@ const InitializeForm = ({ setCurrentPage, updateFormData }) => {
 
   const handleReset = () => {
     setStep(1);
-    setFormData({
+    set2FormData({
       isStart: 1,
       username: "",
       worldview: "",

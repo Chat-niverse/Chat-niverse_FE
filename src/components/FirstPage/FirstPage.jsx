@@ -7,6 +7,7 @@ import Fallout from "../../assets/Images/fallout.webp";
 import Library from "../../assets/Images/library.png";
 import Hollow from "../../assets/Images/hollow.jpg";
 import Horizon_Zerodawn from "../../assets/Images/horizon_zero.jpg";
+import axios from "axios";
 
 const FirstPage = ({ onEnter }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -15,6 +16,12 @@ const FirstPage = ({ onEnter }) => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length); // Loop images
     }, 4750); // Same interval as the TypeAnimation
+
+    const response = axios.post("http://43.200.1.120/api/start", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     return () => clearInterval(interval); // Clean up the interval on component unmount
   }, [images.length]);

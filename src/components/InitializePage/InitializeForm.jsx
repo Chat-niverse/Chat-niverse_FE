@@ -51,6 +51,8 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
   };
 
   const handleSubmit = async () => {
+    console.log("데이터 쏘는거 확인용 : ", getData);
+
     try {
       const response = await axios.post(
         "http://43.200.1.120/api/start",

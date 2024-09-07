@@ -3,8 +3,8 @@ import axios from "axios";
 import "./InitializeForm.css";
 import { TypeAnimation } from "react-type-animation";
 
-const InitializeForm = ({ setCurrentPage, updateFormData }) => {
-  const [formData, set2FormData] = useState({
+const InitializeForm = ({ setCurrentPage, set2FormData }) => {
+  const [formData, updateFormData] = useState({
     isStart: 1, // 0이면 진행중, 1이면 시작
     username: "",
     worldview: "",

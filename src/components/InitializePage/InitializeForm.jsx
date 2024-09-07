@@ -24,6 +24,25 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
     },
     imageurl: "",
   });
+  const [getData, updateGetData] = useState({
+    isStart: 1,
+    username: "",
+    worldview: "",
+    charsetting: "",
+    aim: "",
+    life: 3,
+    inventory: {},
+    isfull: false,
+    playlog: "",
+    gptsays: "",
+    selectedchoice: "",
+    choices: {
+      first: "",
+      second: "",
+      third: "",
+    },
+    imageurl: "",
+  });
 
   const [step, setStep] = useState(1); // Step state to track current form step
 
@@ -53,7 +72,7 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
     try {
       const response = await axios.post(
         "http://43.200.1.120/api/start",
-        formData,
+        getData,
         {
           headers: {
             "Content-Type": "application/json",
@@ -62,7 +81,7 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
       );
 
       // Update formData with immer
-      updateFormData((prevData) =>
+      updateGetData((prevData) =>
         produce(prevData, (draft) => {
           draft.isStart = response.data.result.isStart || 0;
           draft.username = response.data.result.username || "";
@@ -84,7 +103,7 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
           draft.imageurl = response.data.result.imageurl || "";
         })
       );
-      console.log({ formData });
+      console.log({ getData });
       console.log({ response });
 
       setCurrentPage("mainpage");

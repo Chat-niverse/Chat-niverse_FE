@@ -18,25 +18,23 @@ function App() {
   };
 
   return (
-    <>
-      <div className="App">
-        {currentPage === "firstPage" && <FirstPage onEnter={handleEnter} />}
-        {currentPage === "initializePage" && (
-          <InitializePage
-            setFormData={setFormData}
-            setCurrentPage={setCurrentPage}
-          />
-        )}
-        {currentPage === "mainpage" && (
-          <MainPage
-            formData={formData}
-            set2FormData={setFormData}
-            handleChoiceSelect={handleChoiceSelect}
-            selectedChoice={selectedChoice}
-          />
-        )}
-      </div>
-    </>
+    <div className="App">
+      {currentPage === "firstPage" && <FirstPage onEnter={handleEnter} />}
+      {currentPage === "initializePage" && (
+        <InitializePage
+          setFormData={setFormData}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+      {currentPage === "mainpage" && (
+        <MainPage
+          formData={formData}
+          set2FormData={setFormData}
+          handleChoiceSelect={handleChoiceSelect}
+          selectedChoice={selectedChoice}
+        />
+      )}
+    </div>
   );
 }
 

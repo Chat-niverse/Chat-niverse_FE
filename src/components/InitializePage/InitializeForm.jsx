@@ -39,6 +39,7 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
       // Send POST request with the form data
       const response = await axios.post(
         "http://43.200.1.120/api/start",
+        null,
         formData,
         {
           headers: {
@@ -77,13 +78,12 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
         imageurl: response.data.result.imageurl || "",
       }));
       console.log({ formData });
-      console.log({ response });
+
       setCurrentPage("mainpage"); // Redirect to MainPage after successful response
     } catch (error) {
       console.error("Error submitting data:", error);
     }
   };
-
   const handleReset = () => {
     setStep(1);
     set2FormData({

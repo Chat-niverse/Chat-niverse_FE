@@ -28,11 +28,27 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    updateFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    // Handle both simple and nested state updates
+    updateFormData((prevData) => {
+      const keys = name.split("."); // Handle nested fields like choices.first
+
+      if (keys.length === 1) {
+        // Update simple fields
+        return { ...prevData, [name]: value };
+      } else {
+        // Update nested fields
+        return {
+          ...prevData,
+          [keys[0]]: {
+            ...prevData[keys[0]],
+            [keys[1]]: value,
+          },
+        };
+      }
+    });
   };
+
   const handleNextStep = (e) => {
     e.preventDefault();
     setStep((prevStep) => prevStep + 1); // Go to the next step
@@ -40,7 +56,6 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
 
   const handleSubmit = async () => {
     try {
-      // Send POST request with the form data
       const response = await axios.post(
         "http://43.200.1.120/api/start",
         formData,
@@ -50,95 +65,38 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
           },
         }
       );
-      handleChange({
-        target: { name: "isStart", value: response.data.result.isStart || 0 },
-      });
-      handleChange({
-        target: {
-          name: "username",
-          value: response.data.result.username || "",
-        },
-      });
-      handleChange({
-        target: {
-          name: "worldview",
-          value: response.data.result.worldview || "세계관이 없습니다.",
-        },
-      });
-      handleChange({
-        target: {
-          name: "charsetting",
-          value: response.data.result.charsetting || "성격 설정이 없습니다.",
-        },
-      });
-      handleChange({
-        target: {
-          name: "aim",
-          value: response.data.result.aim || "목표가 설정되지 않았습니다.",
-        },
-      });
-      handleChange({
-        target: { name: "life", value: response.data.result.life || "0" },
-      });
-      handleChange({
-        target: {
-          name: "inventory",
-          value: response.data.result.inventory || {},
-        },
-      });
-      handleChange({
-        target: { name: "isfull", value: response.data.result.isfull || false },
-      });
-      handleChange({
-        target: {
-          name: "playlog",
-          value: response.data.result.playlog || "플레이 로그가 없습니다.",
-        },
-      });
-      handleChange({
-        target: { name: "gptsays", value: response.data.result.gptsays || "" },
-      });
-      handleChange({
-        target: {
-          name: "selectedchoice",
-          value: response.data.result.selectedchoice || "",
-        },
-      });
 
-      // choices도 handleChange로 업데이트
-      handleChange({
-        target: {
-          name: "choices.first",
-          value: response.data.result.choices?.first || "",
+      // Update formData with response data
+      updateFormData((prevData) => ({
+        ...prevData, // Keep the existing data
+        isStart: response.data.result.isStart || 0,
+        username: response.data.result.username || "",
+        worldview: response.data.result.worldview || "세계관이 없습니다.",
+        charsetting:
+          response.data.result.charsetting || "성격 설정이 없습니다.",
+        aim: response.data.result.aim || "목표가 설정되지 않았습니다.",
+        life: response.data.result.life || 3,
+        inventory: response.data.result.inventory || {},
+        isfull: response.data.result.isfull || false,
+        playlog: response.data.result.playlog || "플레이 로그가 없습니다.",
+        gptsays: response.data.result.gptsays || "",
+        selectedchoice: response.data.result.selectedchoice || "",
+        choices: {
+          ...prevData.choices, // Maintain existing choices if any
+          first: response.data.result.choices?.first || "",
+          second: response.data.result.choices?.second || "",
+          third: response.data.result.choices?.third || "",
         },
-      });
-      handleChange({
-        target: {
-          name: "choices.second",
-          value: response.data.result.choices?.second || "",
-        },
-      });
-      handleChange({
-        target: {
-          name: "choices.third",
-          value: response.data.result.choices?.third || "",
-        },
-      });
+        imageurl: response.data.result.imageurl || "",
+      }));
 
-      handleChange({
-        target: {
-          name: "imageurl",
-          value: response.data.result.imageurl || "",
-        },
-      });
-      console.log({ formData });
-      console.log({ response });
-
-      setCurrentPage("mainpage"); // Redirect to MainPage after successful response
+      // Transition to MainPage after form submission
+      setCurrentPage("mainpage");
     } catch (error) {
       console.error("Error submitting data:", error);
     }
   };
+
   const handleReset = () => {
     setStep(1);
     set2FormData({

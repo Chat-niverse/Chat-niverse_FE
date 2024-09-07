@@ -3,8 +3,8 @@ import axios from "axios";
 import "./InitializeForm.css";
 import { TypeAnimation } from "react-type-animation";
 
-const InitializeForm = ({ setCurrentPage, setFormData }) => {
-  const [formData, updateFormData] = useState({
+const InitializeForm = ({ setCurrentPage, updateFormData }) => {
+  const [formData, setFormData] = useState({
     isStart: 1, // 0이면 진행중, 1이면 시작
     username: "",
     worldview: "",
@@ -15,41 +15,10 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
     life: 3,
     inventory: null,
     isfull: false,
-    playlog: null,
+    playlog: null,c
     gptsays: null,
     imageurl: null,
   });
-
-  const mapResponseToFormData = (response) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      isStart: response.data.result.isStart || 0,
-      username: response.data.result.username || "",
-      worldview: response.data.result.worldview || "세계관이 없습니다.",
-      charsetting: response.data.result.charsetting || "성격 설정이 없습니다.",
-      aim: response.data.result.aim || "목표가 설정되지 않았습니다.",
-      status: {
-        luck: response.data.result.status?.luck || "0",
-        strength: response.data.result.status?.strength || "0",
-        endurance: response.data.result.status?.endurance || "0",
-        charisma: response.data.result.status?.charisma || "0",
-        intelligence: response.data.result.status?.intelligence || "0",
-        perception: response.data.result.status?.perception || "0",
-      },
-      life: response.data.result.life || "0",
-      inventory: response.data.result.inventory || {}, // 빈 객체일 경우 처리
-      isfull: response.data.result.isfull || false,
-      playlog: response.data.result.playlog || "플레이 로그가 없습니다.",
-      gptsays: response.data.result.gptsays || "",
-      selectedchoice: response.data.result.selectedchoice || "",
-      choices: {
-        first: response.data.result.choices?.first || "",
-        second: response.data.result.choices?.second || "",
-        third: response.data.result.choices?.third || "",
-      },
-      imageurl: response.data.result.imageurl || "",
-    }));
-  };
 
   const [step, setStep] = useState(1); // Step state to track current form step
 
@@ -77,13 +46,40 @@ const InitializeForm = ({ setCurrentPage, setFormData }) => {
           },
         }
       );
+      // Update formData with response
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        isStart: response.data.result.isStart || 0,
+        username: response.data.result.username || "",
+        worldview: response.data.result.worldview || "세계관이 없습니다.",
+        charsetting:
+          response.data.result.charsetting || "성격 설정이 없습니다.",
+        aim: response.data.result.aim || "목표가 설정되지 않았습니다.",
+        status: {
+          luck: response.data.result.status?.luck || "0",
+          strength: response.data.result.status?.strength || "0",
+          endurance: response.data.result.status?.endurance || "0",
+          charisma: response.data.result.status?.charisma || "0",
+          intelligence: response.data.result.status?.intelligence || "0",
+          perception: response.data.result.status?.perception || "0",
+        },
+        life: response.data.result.life || "0",
+        inventory: response.data.result.inventory || {},
+        isfull: response.data.result.isfull || false,
+        playlog: response.data.result.playlog || "플레이 로그가 없습니다.",
+        gptsays: response.data.result.gptsays || "",
+        selectedchoice: response.data.result.selectedchoice || "",
+        choices: {
+          first: response.data.result.choices?.first || "",
+          second: response.data.result.choices?.second || "",
+          third: response.data.result.choices?.third || "",
+        },
+        imageurl: response.data.result.imageurl || "",
+      }));
 
-      console.log("Response received:", response.data);
-      mapResponseToFormData(response);
-      setCurrentPage("mainpage");
+      setCurrentPage("mainpage"); // Redirect to MainPage after successful response
     } catch (error) {
-      console.error("Error sending data:", error);
-      // Handle error (you can show an error message to the user)
+      console.error("Error submitting data:", error);
     }
   };
 

@@ -50,27 +50,87 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
           },
         }
       );
-      // Update formData with response
-      updateFormData(() => ({
-        isStart: response.data.result.isStart || 0,
-        username: response.data.result.username || "",
-        worldview: response.data.result.worldview || "세계관이 없습니다.",
-        charsetting:
-          response.data.result.charsetting || "성격 설정이 없습니다.",
-        aim: response.data.result.aim || "목표가 설정되지 않았습니다.",
-        life: response.data.result.life || "0",
-        inventory: response.data.result.inventory || {},
-        isfull: response.data.result.isfull || false,
-        playlog: response.data.result.playlog || "플레이 로그가 없습니다.",
-        gptsays: response.data.result.gptsays || "",
-        selectedchoice: response.data.result.selectedchoice || "",
-        choices: {
-          first: response.data.result.choices?.first || "",
-          second: response.data.result.choices?.second || "",
-          third: response.data.result.choices?.third || "",
+      handleChange({
+        target: { name: "isStart", value: response.data.result.isStart || 0 },
+      });
+      handleChange({
+        target: {
+          name: "username",
+          value: response.data.result.username || "",
         },
-        imageurl: response.data.result.imageurl || "",
-      }));
+      });
+      handleChange({
+        target: {
+          name: "worldview",
+          value: response.data.result.worldview || "세계관이 없습니다.",
+        },
+      });
+      handleChange({
+        target: {
+          name: "charsetting",
+          value: response.data.result.charsetting || "성격 설정이 없습니다.",
+        },
+      });
+      handleChange({
+        target: {
+          name: "aim",
+          value: response.data.result.aim || "목표가 설정되지 않았습니다.",
+        },
+      });
+      handleChange({
+        target: { name: "life", value: response.data.result.life || "0" },
+      });
+      handleChange({
+        target: {
+          name: "inventory",
+          value: response.data.result.inventory || {},
+        },
+      });
+      handleChange({
+        target: { name: "isfull", value: response.data.result.isfull || false },
+      });
+      handleChange({
+        target: {
+          name: "playlog",
+          value: response.data.result.playlog || "플레이 로그가 없습니다.",
+        },
+      });
+      handleChange({
+        target: { name: "gptsays", value: response.data.result.gptsays || "" },
+      });
+      handleChange({
+        target: {
+          name: "selectedchoice",
+          value: response.data.result.selectedchoice || "",
+        },
+      });
+
+      // choices도 handleChange로 업데이트
+      handleChange({
+        target: {
+          name: "choices.first",
+          value: response.data.result.choices?.first || "",
+        },
+      });
+      handleChange({
+        target: {
+          name: "choices.second",
+          value: response.data.result.choices?.second || "",
+        },
+      });
+      handleChange({
+        target: {
+          name: "choices.third",
+          value: response.data.result.choices?.third || "",
+        },
+      });
+
+      handleChange({
+        target: {
+          name: "imageurl",
+          value: response.data.result.imageurl || "",
+        },
+      });
       console.log({ formData });
       console.log({ response });
 

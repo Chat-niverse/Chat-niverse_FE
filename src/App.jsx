@@ -6,7 +6,7 @@ import "./App.css";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("firstPage");
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState({});
   const [selectedChoice, setSelectedChoice] = useState(null);
 
   const handleChoiceSelect = (index) => {

@@ -5,22 +5,13 @@ import { TypeAnimation } from "react-type-animation";
 
 const InitializeForm = ({ setCurrentPage, set2FormData }) => {
   const [formData, updateFormData] = useState({
+    isStart: 1, // 0이면 진행중, 1이면 시작
+    username: "",
+    worldview: "",
+    charsetting: "",
+    aim: "",
     data: {
-      result: {
-        isStart: 1, // 0이면 진행중, 1이면 시작
-        username: "",
-        worldview: "",
-        charsetting: "",
-        aim: "",
-        choices: null,
-        selectedchoice: null,
-        life: 3,
-        inventory: null,
-        isfull: false,
-        playlog: null,
-        gptsays: null,
-        imageurl: null,
-      },
+      result: {},
     },
   });
 

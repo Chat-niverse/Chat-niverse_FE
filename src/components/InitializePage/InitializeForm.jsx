@@ -24,7 +24,25 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
     },
     imageurl: "",
   });
-  const [getData, updateGetData] = useState({});
+  const [getData, updateGetData] = useState({
+    isStart: 1,
+    username: "",
+    worldview: "",
+    charsetting: "",
+    aim: "",
+    life: 3,
+    inventory: {},
+    isfull: false,
+    playlog: "",
+    gptsays: "",
+    selectedchoice: "",
+    choices: {
+      first: "",
+      second: "",
+      third: "",
+    },
+    imageurl: "",
+  });
 
   const [step, setStep] = useState(1); // Step state to track current form step
 

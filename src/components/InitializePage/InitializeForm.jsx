@@ -43,9 +43,8 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
           "Content-Type": "application/json",
         },
       });
-      setTest(...test, ...response.data);
       // Update formData with response
-      updateFormData((prevFormData) => ({
+      setTest((prevFormData) => ({
         ...prevFormData,
         isStart: response.data.result.isStart || 0,
         username: response.data.result.username || "",

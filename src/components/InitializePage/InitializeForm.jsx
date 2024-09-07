@@ -51,8 +51,7 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
         }
       );
       // Update formData with response
-      updateFormData((prevFormData) => ({
-        ...prevFormData,
+      updateFormData(() => ({
         isStart: response.data.result.isStart || 0,
         username: response.data.result.username || "",
         worldview: response.data.result.worldview || "세계관이 없습니다.",

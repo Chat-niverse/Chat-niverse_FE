@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { produce } from "immer";
 import axios from "axios";
 import "./InitializeForm.css";
 import { TypeAnimation } from "react-type-animation";
@@ -28,6 +29,19 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+  
+    updateFormData((prevData) => 
+      produce(prevData, (draft) => {
+        const keys = name.split(".");  // Handle nested fields
+  
+        if (keys.length === 1) {
+          draft[name] = value;  // Simple update
+        } else {
+          draft[keys[0]][keys[1]] = value;  // Nested update
+        }
+      })
+    );
+  };
 
     // Handle both simple and nested state updates
     updateFormData((prevData) => {
@@ -65,38 +79,36 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
           },
         }
       );
-
-      // Update formData with response data
-      updateFormData((prevData) => ({
-        ...prevData, // Keep the existing data
-        isStart: response.data.result.isStart || 0,
-        username: response.data.result.username || "",
-        worldview: response.data.result.worldview || "세계관이 없습니다.",
-        charsetting:
-          response.data.result.charsetting || "성격 설정이 없습니다.",
-        aim: response.data.result.aim || "목표가 설정되지 않았습니다.",
-        life: response.data.result.life || 3,
-        inventory: response.data.result.inventory || {},
-        isfull: response.data.result.isfull || false,
-        playlog: response.data.result.playlog || "플레이 로그가 없습니다.",
-        gptsays: response.data.result.gptsays || "",
-        selectedchoice: response.data.result.selectedchoice || "",
-        choices: {
-          ...prevData.choices, // Maintain existing choices if any
-          first: response.data.result.choices?.first || "",
-          second: response.data.result.choices?.second || "",
-          third: response.data.result.choices?.third || "",
-        },
-        imageurl: response.data.result.imageurl || "",
-      }));
-
-      // Transition to MainPage after form submission
+  
+      // Update formData with immer
+      updateFormData((prevData) =>
+        produce(prevData, (draft) => {
+          draft.isStart = response.data.result.isStart || 0;
+          draft.username = response.data.result.username || "";
+          draft.worldview = response.data.result.worldview || "세계관이 없습니다.";
+          draft.charsetting = response.data.result.charsetting || "성격 설정이 없습니다.";
+          draft.aim = response.data.result.aim || "목표가 설정되지 않았습니다.";
+          draft.life = response.data.result.life || 3;
+          draft.inventory = response.data.result.inventory || {};
+          draft.isfull = response.data.result.isfull || false;
+          draft.playlog = response.data.result.playlog || "플레이 로그가 없습니다.";
+          draft.gptsays = response.data.result.gptsays || "";
+          draft.selectedchoice = response.data.result.selectedchoice || "";
+          draft.choices.first = response.data.result.choices?.first || "";
+          draft.choices.second = response.data.result.choices?.second || "";
+          draft.choices.third = response.data.result.choices?.third || "";
+          draft.imageurl = response.data.result.imageurl || "";
+        })
+      );
+      console.log({draft});
+      console.log({response});
+  
       setCurrentPage("mainpage");
     } catch (error) {
       console.error("Error submitting data:", error);
     }
   };
-
+  
   const handleReset = () => {
     setStep(1);
     set2FormData({

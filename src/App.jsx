@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import MainPage from "./components/MainPage/MainPage";
 import InitializePage from "./components/InitializePage/InitializePage";
+import axios from "axios";
 import FirstPage from "./components/FirstPage/FirstPage";
 import "./App.css";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("firstPage");
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState([]);
   const [selectedChoice, setSelectedChoice] = useState(null);
 
   const handleChoiceSelect = (index) => {
@@ -17,6 +18,12 @@ function App() {
     setCurrentPage("initializePage");
   };
 
+  useEffect(() => {
+    axios.get("http://43.200.1.120/api/start").then((response) => {
+      setFormData(response.data.result);
+    });
+  }, []);
+
   return (
     <div className="App">
       {currentPage === "firstPage" && <FirstPage onEnter={handleEnter} />}
@@ -26,6 +33,7 @@ function App() {
           setCurrentPage={setCurrentPage}
         />
       )}
+
       {currentPage === "mainpage" && (
         <MainPage
           formData={formData}

@@ -51,12 +51,19 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
   };
 
   const handleSubmit = async () => {
-    console.log("데이터 쏘는거 확인용 : ", getData);
+    const sendData = {
+      isStart: 1,
+      username: "최윤서",
+      worldview: "안녕",
+      charsetting: "페품",
+      aim: "방사능",
+    };
+    console.log("데이터 쏘는거 확인용 : ", sendData);
 
     try {
       const response = await axios.post(
         "http://43.200.1.120/api/start",
-        getData,
+        sendData,
         {
           headers: {
             "Content-Type": "application/json",

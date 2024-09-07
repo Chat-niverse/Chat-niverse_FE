@@ -5,14 +5,23 @@ import { TypeAnimation } from "react-type-animation";
 
 const InitializeForm = ({ setCurrentPage, set2FormData }) => {
   const [formData, updateFormData] = useState({
-    isStart: 1, // 0이면 진행중, 1이면 시작
+    isStart: 1,
     username: "",
     worldview: "",
     charsetting: "",
     aim: "",
-    data: {
-      result: {},
+    life: 3,
+    inventory: {},
+    isfull: false,
+    playlog: "",
+    gptsays: "",
+    selectedchoice: "",
+    choices: {
+      first: "",
+      second: "",
+      third: "",
     },
+    imageurl: "",
   });
 
   const [step, setStep] = useState(1); // Step state to track current form step
@@ -50,14 +59,6 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
         charsetting:
           response.data.result.charsetting || "성격 설정이 없습니다.",
         aim: response.data.result.aim || "목표가 설정되지 않았습니다.",
-        status: {
-          luck: response.data.result.status?.luck || "0",
-          strength: response.data.result.status?.strength || "0",
-          endurance: response.data.result.status?.endurance || "0",
-          charisma: response.data.result.status?.charisma || "0",
-          intelligence: response.data.result.status?.intelligence || "0",
-          perception: response.data.result.status?.perception || "0",
-        },
         life: response.data.result.life || "0",
         inventory: response.data.result.inventory || {},
         isfull: response.data.result.isfull || false,

@@ -76,6 +76,7 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
         },
         imageurl: response.data.result.imageurl || "",
       }));
+      console.log({ formData });
 
       setCurrentPage("mainpage"); // Redirect to MainPage after successful response
     } catch (error) {

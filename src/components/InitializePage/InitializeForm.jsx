@@ -24,7 +24,7 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
     },
     imageurl: "",
   });
-  const [getData, updateGetData] = useState({});
+  //   const [getData, updateGetData] = useState({});
 
   const [step, setStep] = useState(1); // Step state to track current form step
 
@@ -72,11 +72,15 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
       );
 
       console.log("response Data : ", response.data);
-
-      updateGetData((prev) => ({
+      updateFormData((prev) => ({
         ...prev,
-        ...response.data, // Ensure that the spread operator is used inside an object.
+        ...response.result,
       }));
+
+      //   updateGetData((prev) => ({
+      //     ...prev,
+      //     ...response.data, // Ensure that the spread operator is used inside an object.
+      //   }));
     } catch (error) {
       console.error("Error during data fetching:", error);
     }

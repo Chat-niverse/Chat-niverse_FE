@@ -7,7 +7,6 @@ import "./App.css";
 function App() {
   const [currentPage, setCurrentPage] = useState("firstPage");
   const [formData, setFormData] = useState([]);
-  const [test, setTest] = useState([]);
   const [selectedChoice, setSelectedChoice] = useState(null);
 
   const handleChoiceSelect = (index) => {
@@ -22,12 +21,15 @@ function App() {
     <div className="App">
       {currentPage === "firstPage" && <FirstPage onEnter={handleEnter} />}
       {currentPage === "initializePage" && (
-        <InitializePage setFormData={setTest} setCurrentPage={setCurrentPage} />
+        <InitializePage
+          setFormData={setFormData}
+          setCurrentPage={setCurrentPage}
+        />
       )}
       {currentPage === "mainpage" && (
         <MainPage
-          formData={test}
-          set2FormData={setTest}
+          formData={formData}
+          set2FormData={setFormData}
           handleChoiceSelect={handleChoiceSelect}
           selectedChoice={selectedChoice}
         />

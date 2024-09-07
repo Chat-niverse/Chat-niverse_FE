@@ -4,7 +4,6 @@ import "./InitializeForm.css";
 import { TypeAnimation } from "react-type-animation";
 
 const InitializeForm = ({ setCurrentPage, set2FormData }) => {
-  const [test, setTest] = useState(null);
   const [formData, updateFormData] = useState({
     isStart: 1, // 0이면 진행중, 1이면 시작
     username: "",
@@ -38,13 +37,17 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
   const handleSubmit = async () => {
     try {
       // Send POST request with the form data
-      const response = await axios.post("http://43.200.1.120/api/start", test, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        "http://43.200.1.120/api/start",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       // Update formData with response
-      setTest((prevFormData) => ({
+      updateFormData((prevFormData) => ({
         ...prevFormData,
         isStart: response.data.result.isStart || 0,
         username: response.data.result.username || "",

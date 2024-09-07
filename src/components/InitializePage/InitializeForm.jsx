@@ -27,40 +27,21 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
 
   const [step, setStep] = useState(1); // Step state to track current form step
 
+  // Handle form input change (for both simple and nested updates)
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
-    updateFormData((prevData) => 
+
+    updateFormData((prevData) =>
       produce(prevData, (draft) => {
-        const keys = name.split(".");  // Handle nested fields
-  
+        const keys = name.split("."); // Handle nested fields
+
         if (keys.length === 1) {
-          draft[name] = value;  // Simple update
+          draft[name] = value; // Simple field update
         } else {
-          draft[keys[0]][keys[1]] = value;  // Nested update
+          draft[keys[0]][keys[1]] = value; // Nested field update
         }
       })
     );
-  };
-
-    // Handle both simple and nested state updates
-    updateFormData((prevData) => {
-      const keys = name.split("."); // Handle nested fields like choices.first
-
-      if (keys.length === 1) {
-        // Update simple fields
-        return { ...prevData, [name]: value };
-      } else {
-        // Update nested fields
-        return {
-          ...prevData,
-          [keys[0]]: {
-            ...prevData[keys[0]],
-            [keys[1]]: value,
-          },
-        };
-      }
-    });
   };
 
   const handleNextStep = (e) => {
@@ -79,19 +60,22 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
           },
         }
       );
-  
+
       // Update formData with immer
       updateFormData((prevData) =>
         produce(prevData, (draft) => {
           draft.isStart = response.data.result.isStart || 0;
           draft.username = response.data.result.username || "";
-          draft.worldview = response.data.result.worldview || "세계관이 없습니다.";
-          draft.charsetting = response.data.result.charsetting || "성격 설정이 없습니다.";
+          draft.worldview =
+            response.data.result.worldview || "세계관이 없습니다.";
+          draft.charsetting =
+            response.data.result.charsetting || "성격 설정이 없습니다.";
           draft.aim = response.data.result.aim || "목표가 설정되지 않았습니다.";
           draft.life = response.data.result.life || 3;
           draft.inventory = response.data.result.inventory || {};
           draft.isfull = response.data.result.isfull || false;
-          draft.playlog = response.data.result.playlog || "플레이 로그가 없습니다.";
+          draft.playlog =
+            response.data.result.playlog || "플레이 로그가 없습니다.";
           draft.gptsays = response.data.result.gptsays || "";
           draft.selectedchoice = response.data.result.selectedchoice || "";
           draft.choices.first = response.data.result.choices?.first || "";
@@ -100,15 +84,15 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
           draft.imageurl = response.data.result.imageurl || "";
         })
       );
-      console.log({draft});
-      console.log({response});
-  
+      console.log({ formData });
+      console.log({ response });
+
       setCurrentPage("mainpage");
     } catch (error) {
       console.error("Error submitting data:", error);
     }
   };
-  
+
   const handleReset = () => {
     setStep(1);
     set2FormData({
@@ -117,18 +101,18 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
       worldview: "",
       charsetting: "",
       aim: "",
-      //   choices: [],
-      //   selectedchoice: null,
-      //   status: [],
-      //   life: 3,
-      //   inventory: [
-      //     ["knife", 1],
-      //     ["stone", 2],
-      //   ],
-      //   isfull: false,
-      //   playlog: null,
-      //   gptsays: null,
-      // 0이면 진행중, 1이면 시작
+      life: 3,
+      inventory: {},
+      isfull: false,
+      playlog: "",
+      gptsays: "",
+      selectedchoice: "",
+      choices: {
+        first: "",
+        second: "",
+        third: "",
+      },
+      imageurl: "",
     });
   };
 

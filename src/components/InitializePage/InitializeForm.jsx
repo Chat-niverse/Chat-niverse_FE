@@ -24,25 +24,7 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
     },
     imageurl: "",
   });
-  const [getData, updateGetData] = useState({
-    isStart: 1,
-    username: "",
-    worldview: "",
-    charsetting: "",
-    aim: "",
-    life: 3,
-    inventory: {},
-    isfull: false,
-    playlog: "",
-    gptsays: "",
-    selectedchoice: "",
-    choices: {
-      first: "",
-      second: "",
-      third: "",
-    },
-    imageurl: "",
-  });
+  const [getData, updateGetData] = useState({});
 
   const [step, setStep] = useState(1); // Step state to track current form step
 
@@ -69,47 +51,71 @@ const InitializeForm = ({ setCurrentPage, set2FormData }) => {
   };
 
   const handleSubmit = async () => {
-    try {
-      const response = await axios.post(
-        "http://43.200.1.120/api/start",
-        getData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    updateGetData(
+        const response = await axios.post(
+                "http://43.200.1.120/api/start",
+                getData,
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                }
+              );
 
-      // Update formData with immer
-      updateGetData((prevData) =>
-        produce(prevData, (draft) => {
-          draft.isStart = response.data.result.isStart || 0;
-          draft.username = response.data.result.username || "";
-          draft.worldview =
-            response.data.result.worldview || "세계관이 없습니다.";
-          draft.charsetting =
-            response.data.result.charsetting || "성격 설정이 없습니다.";
-          draft.aim = response.data.result.aim || "목표가 설정되지 않았습니다.";
-          draft.life = response.data.result.life || 3;
-          draft.inventory = response.data.result.inventory || {};
-          draft.isfull = response.data.result.isfull || false;
-          draft.playlog =
-            response.data.result.playlog || "플레이 로그가 없습니다.";
-          draft.gptsays = response.data.result.gptsays || "";
-          draft.selectedchoice = response.data.result.selectedchoice || "";
-          draft.choices.first = response.data.result.choices?.first || "";
-          draft.choices.second = response.data.result.choices?.second || "";
-          draft.choices.third = response.data.result.choices?.third || "";
-          draft.imageurl = response.data.result.imageurl || "";
-        })
-      );
-      console.log({ getData });
-      console.log({ response });
 
-      setCurrentPage("mainpage");
-    } catch (error) {
-      console.error("Error submitting data:", error);
-    }
+              console.log();
+              updateGetData((prev:any) =>(
+                    ...prev,
+                    response.data
+
+    ));
+        
+
+    )
+    // try {
+    //     // console.log('getData : ', getData);
+    //   const response = await axios.post(
+    //     "http://43.200.1.120/api/start",
+    //     getData,
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     }
+    //   );
+
+    //   // Update formData with immer
+    //   updateGetData((prevData) =>
+    //     produce(prevData, (draft) => {
+    //       const getdata_isStart = response.data.result.isStart || 0;
+    //       const getdata_username = response.data.result.username || "";
+    //       const getdata_worldview =
+    //         response.data.result.worldview || "세계관이 없습니다.";
+    //       const getdata_charsetting =
+    //         response.data.result.charsetting || "성격 설정이 없습니다.";
+    //       const getdata_aim =
+    //         response.data.result.aim || "목표가 설정되지 않았습니다.";
+    //       const getdata_life = response.data.result.life || 3;
+    //       const getdata_inventory = response.data.result.inventory || {};
+    //       const getdata_isfull = response.data.result.isfull || false;
+    //       const getdata_playlog =
+    //         response.data.result.playlog || "플레이 로그가 없습니다.";
+    //       const getdata_gptsays = response.data.result.gptsays || "";
+    //       const getdata_selectedchoice =
+    //         response.data.result.selectedchoice || "";
+    //       const getdata_first = response.data.result.choices?.first || "";
+    //       const getdata_second = response.data.result.choices?.second || "";
+    //       const getdata_third = response.data.result.choices?.third || "";
+    //       const getdata_imageurl = response.data.result.imageurl || "";
+    //     })
+    //   );
+    //   console.log({ getData });
+    //   console.log({ response });
+
+    //   setCurrentPage("mainpage");
+    // } catch (error) {
+    //   console.error("Error submitting data:", error);
+    // }
   };
 
   const handleReset = () => {
